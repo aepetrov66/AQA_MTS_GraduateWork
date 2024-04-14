@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 using System.Collections.ObjectModel;
+using CoreProject.Wrappers;
 
 namespace CoreProject.Helpers;
 
@@ -68,12 +69,12 @@ public class WaitsHelper
     {
         return _wait.Until(_ => element.Displayed);
     }
-    /*
+
     public UIElement WaitChildElement(IWebElement webElement, By by)
     {
-        return new UIElement(driver, _wait.Until(_ => webElement.FindElement(by)));
+        return new UIElement(_driver, _wait.Until(_ => webElement.FindElement(by)));
     }
-    */
+
     public IWebElement FluentWaitForElement(By locator)
     {
         // Инициализация и параметризация FluentWait
