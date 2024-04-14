@@ -8,19 +8,14 @@
 
   <ItemGroup>
     <Compile Remove="Drivers\**" />
-    <Compile Remove="Pages\**" />
     <Compile Remove="Support\**" />
     <EmbeddedResource Remove="Drivers\**" />
-    <EmbeddedResource Remove="Pages\**" />
     <EmbeddedResource Remove="Support\**" />
     <None Remove="Drivers\**" />
-    <None Remove="Pages\**" />
     <None Remove="Support\**" />
     <SpecFlowFeatureFiles Remove="Drivers\**" />
-    <SpecFlowFeatureFiles Remove="Pages\**" />
     <SpecFlowFeatureFiles Remove="Support\**" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Drivers\**" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Pages\**" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Support\**" />
   </ItemGroup>
 
