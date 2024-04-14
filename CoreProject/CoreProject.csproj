@@ -24,8 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Drivers\" />
-    <Folder Include="Core\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Pages\" />
     <Folder Include="Support\" />
   </ItemGroup>
