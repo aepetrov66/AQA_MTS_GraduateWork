@@ -15,22 +15,23 @@ public class LoginPage : BasePage
     private static readonly By ErrorLabelBy = By.CssSelector("span[class=xtWHgv]");
 
     // Инициализация класса
-    public LoginPage(IWebDriver driver) : base(driver) { }
+    public LoginPage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl) { }
     protected override string GetEndpoint() => END_POINT;
     public override bool IsPageOpened() => EmailInput.Displayed && PswdInput.Displayed;
 
     // Методы
     // Методы поиска элементов
-    public Input EmailInput => new Input(Driver, EmailInputBy);
-    public Input PswdInput => new Input(Driver, PswdInputBy);
-    public Button SignInButton => new Button(Driver, SignInButtonBy);
-    public CheckBox RememberMeBox => new CheckBox(Driver, RememberMeBoxBy);
-    public IWebElement ErrorLabel => WaitsHelper.WaitForExists(ErrorLabelBy);
+    private Input EmailInput => new Input(Driver, EmailInputBy);
+    private Input PswdInput => new Input(Driver, PswdInputBy);
+    private Button SignInButton => new Button(Driver, SignInButtonBy);
+    private CheckBox RememberMeBox => new CheckBox(Driver, RememberMeBoxBy);
+    private IWebElement ErrorLabel => WaitsHelper.WaitForExists(ErrorLabelBy);
 
     // Методы действий с элементами
     public void SignInClick() => SignInButton.Click();
-    public void EmaiWrite(string str) => EmailInput.SendKeys(str);
-    public void PswdWrite(string str) => PswdInput.SendKeys(str);
+    public void EmaiWrite(string email) => EmailInput.SendKeys(email);
+    public void PswdWrite(string pswd) => PswdInput.SendKeys(pswd);
+    public void RememberMe(bool remember) => RememberMeBox.CheckTheBox(remember);
 
     // Методы получения свойств
     public string GetErrorLabelText() => ErrorLabel.Text.Trim();
