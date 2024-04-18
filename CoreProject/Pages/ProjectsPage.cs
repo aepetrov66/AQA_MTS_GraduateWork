@@ -40,5 +40,4 @@ public class ProjectsPage : BasePage
     }
 
     // Методы получения свойств
-
 }
