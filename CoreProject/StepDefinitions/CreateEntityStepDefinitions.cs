@@ -1,4 +1,5 @@
 using CoreProject.Core;
+using CoreProject.Models;
 using CoreProject.Pages;
 using CoreProject.StepDefinitions.Navigation;
 using CoreProject.StepDefinitions.UserActions;
@@ -13,7 +14,7 @@ namespace CoreProject.StepDefinitions
     public class CreateEntityStepDefinitions : BaseGuiStep
     {
         private ProjectRepositoryPage _projectRepositoryPage;
-        private CreateNewTestCasePage _newTestCasePage;
+        private CreateTestCasePage _newTestCasePage;
         private NavigationSteps _navigationSteps;
         private ActionSteps _actionSteps;
 
@@ -38,7 +39,7 @@ namespace CoreProject.StepDefinitions
         [When(@"user fill the NewTestCaseTitle")]
         public void AndUserFillTheNewTestCaseTitle()
         {
-            _newTestCasePage.PrintNewTestCaseTitle("Smth");
+            _newTestCasePage.FillNewTestCaseTitle("Smth");
         }
 
         [When(@"navigate Backward")]
@@ -55,5 +56,36 @@ namespace CoreProject.StepDefinitions
             alert.Accept();
             _projectRepositoryPage.IsPageOpened();
         }
+
+        [When(@"user fills the TestCaseBasic")]
+        public void WhenUserFillsTheTestCaseBasic()
+        {
+            _projectRepositoryPage = _actionSteps.CreateNewTestCase(_newTestCasePage, new TestCase());
+        }
+
+        [Then(@"assert the ProjectRepository page is open")]
+        public void ThenAssertTheProjectRepositoryPageIsOpen()
+        {
+            Assert.That(_projectRepositoryPage.IsPageOpened());
+        }
+
+        [Then(@"new testCase is created")]
+        public void ThenNewTestCaseIsCreated()
+        {
+            Assert.That(_projectRepositoryPage.TestCaseExists("Some Title"));
+        }
+
+        [When(@"user delete TestCase")]
+        public void WhenUserDeleteTestCase()
+        {
+            _actionSteps.DeleteTestCase(_projectRepositoryPage);
+        }
+
+        [Then(@"there is no such testCase")]
+        public void ThenThereIsNoSuchTestCase()
+        {
+            Thread.Sleep(5000);
+        }
+
     }
 }

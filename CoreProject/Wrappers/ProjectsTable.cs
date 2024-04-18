@@ -68,7 +68,7 @@ public class ProjectsTable
 
     public TableCell GetProjectCell(string projectName)
     {
-        foreach(var row in _rows)
+        foreach (var row in _rows)
         {
             if (row.GetCell(2).Text.Equals(projectName))
             {

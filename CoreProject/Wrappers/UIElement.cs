@@ -131,6 +131,11 @@ public class UIElement : IWebElement
         _actions.MoveToElement(_webElement).Build().Perform();
     }
 
+    public bool WaitForElementInvisible(IWebElement webElement)
+    {
+        return _waitsHelper.WaitForElementInvisible(webElement);
+    }
+
     public string TagName => _webElement.TagName;
 
     public string Text

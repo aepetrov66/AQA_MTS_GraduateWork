@@ -1,5 +1,6 @@
 ﻿using CoreProject.Core;
 using CoreProject.Helpers.Configuration;
+using CoreProject.Models;
 using CoreProject.Pages;
 
 namespace CoreProject.StepDefinitions.UserActions;
@@ -16,5 +17,19 @@ public class ActionSteps : BaseGuiStep
         projectsPage.CreateNewProjectDialog.Description("Description");
         projectsPage.CreateNewProjectDialog.RadioButtonSelect("public");
         return projectsPage.CreateNewProjectDialog.CreateProgectClick();
+    }
+
+    public ProjectRepositoryPage CreateNewTestCase(CreateTestCasePage createNewTestCasePage, TestCase testCase)
+    {
+        createNewTestCasePage.FillTheNewTestCaseBasic(testCase);
+        return createNewTestCasePage.SaveTestCase();
+    }
+
+    public ProjectRepositoryPage DeleteTestCase(ProjectRepositoryPage projectRepositoryPage)
+    {
+        projectRepositoryPage.ChooseTestCase("a");
+        projectRepositoryPage.DeleteClick();
+        projectRepositoryPage.Confirm();
+        return projectRepositoryPage.ConfirmButtonClick();
     }
 }
