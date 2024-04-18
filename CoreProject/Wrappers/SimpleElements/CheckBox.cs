@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V121.Debugger;
 
 namespace CoreProject.Wrappers.SimpleElements;
 
@@ -14,11 +15,15 @@ public class CheckBox
         _uiElement = new UIElement(webDriver, webElement);
     }
 
-    public void CheckTheBox()
+    public void CheckTheBox(bool check)
     {
-        if (!_uiElement.Selected)
+        if (check)
         {
-            _uiElement.Click();
+            if (!_uiElement.Selected) _uiElement.Click();
+        }
+        else
+        {
+            if(_uiElement.Selected) _uiElement.Click();
         }
     }
 }

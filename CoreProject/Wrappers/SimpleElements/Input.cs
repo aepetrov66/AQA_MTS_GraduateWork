@@ -17,5 +17,10 @@ public class Input
     {
         _uiElement.SendKeys(str);
     }
+
+    public void Clear()
+    {
+        _uiElement.Clear();
+    }
     public bool Displayed => _uiElement.Displayed;
 }

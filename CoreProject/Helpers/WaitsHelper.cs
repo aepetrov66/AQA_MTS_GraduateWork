@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 using System.Collections.ObjectModel;
 using CoreProject.Wrappers;
+using CoreProject.Wrappers.SimpleElements;
 
 namespace CoreProject.Helpers;
 
@@ -30,6 +31,17 @@ public class WaitsHelper
     public ReadOnlyCollection<IWebElement> WaitForPresenceOfAllElementsLocatedBy(By locator)
     {
         return _wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(locator));
+    }
+
+    public List<RadioButton> WaitForPresenceOfAllRadioButtonsLocatedBy(By locator)
+    {
+        List<RadioButton> radioButtons = new List<RadioButton>();
+        ReadOnlyCollection<IWebElement> elements = _wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(locator));
+        foreach(var element in elements)
+        {
+            radioButtons.Add(new RadioButton(_driver, element));
+        }
+        return radioButtons;
     }
 
     public IWebElement WaitForExists(By locator)
