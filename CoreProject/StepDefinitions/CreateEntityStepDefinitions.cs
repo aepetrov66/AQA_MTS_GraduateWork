@@ -36,7 +36,7 @@ namespace CoreProject.StepDefinitions
             _newTestCasePage = _projectRepositoryPage.CreateCaseButtonClick();
         }
 
-        [When(@"user fill the NewTestCaseTitle")]
+        [When(@"user fill the TestCaseTitle")]
         public void AndUserFillTheNewTestCaseTitle()
         {
             _newTestCasePage.FillNewTestCaseTitle("Smth");
@@ -72,20 +72,21 @@ namespace CoreProject.StepDefinitions
         [Then(@"new testCase is created")]
         public void ThenNewTestCaseIsCreated()
         {
-            Assert.That(_projectRepositoryPage.TestCaseExists("Some Title"));
+            Assert.That(_projectRepositoryPage.LatestTestCaseTitleAssert("Some Title"));
         }
 
         [When(@"user delete TestCase")]
         public void WhenUserDeleteTestCase()
         {
-            _actionSteps.DeleteTestCase(_projectRepositoryPage);
+            _projectRepositoryPage = _actionSteps.DeleteTestCase(_projectRepositoryPage);
         }
 
         [Then(@"there is no such testCase")]
         public void ThenThereIsNoSuchTestCase()
         {
-            Thread.Sleep(5000);
+            Driver.Navigate().Refresh();
+            var list = _projectRepositoryPage.GetTescasesIds();
+            Assert.That(!list.Contains(3));
         }
-
     }
 }

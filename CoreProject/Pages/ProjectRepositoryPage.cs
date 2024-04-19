@@ -35,6 +35,7 @@ public class ProjectRepositoryPage : BasePage
     private Button DeleteButton => new Button(Driver, DeleteButtonBy);
     private Input ConfirmInput => new Input(Driver, ConfirmInputBy);
     private Button ConfirmButton => new Button(Driver, ConfirmButtonBy);
+    private RepositoryTestCase TestCaseList => new RepositoryTestCase(Driver);
 
 
     // Методы действий с элементами
@@ -46,10 +47,15 @@ public class ProjectRepositoryPage : BasePage
         CreateCaseButton.Click();
         return new CreateTestCasePage(Driver, projectCode);
     }
-    public void ChooseTestCase(string title)
+
+    public void ChooseTestcase(int id)
     {
-        RepositoryTestCase testCase = new RepositoryTestCase(Driver, title);
-        testCase.Choose();
+        TestCaseList.Choose(id);
+    }
+
+    public void ChooseLatestTestCase()
+    {
+        TestCaseList.Choose(TestCaseList.GetTheLatestTestCaseId());
     }
     public void Confirm()
     {
@@ -69,10 +75,15 @@ public class ProjectRepositoryPage : BasePage
         return projectCode;
     }
 
-    public bool TestCaseExists(string title)
+    public bool LatestTestCaseTitleAssert(string expectedTitle)
     {
-        RepositoryTestCase testCase = new RepositoryTestCase(Driver, title);
-        if(testCase.GetTitle().Equals(title)) return true;
+        var title = TestCaseList.GetTitle(TestCaseList.GetTheLatestTestCaseId());
+        if (title.Equals(expectedTitle)) return true;
         else return false;
+    }
+
+    public List<int> GetTescasesIds()
+    {
+        return TestCaseList.GetTestCasesIds();
     }
 }

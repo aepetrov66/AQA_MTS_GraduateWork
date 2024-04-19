@@ -42,5 +42,18 @@ namespace CoreProject.StepDefinitions
         {
             Assert.That(_repositoryPage.IsPageOpened() && _repositoryPage.GetProjectCode().Equals("BBBBBBBBBB"));
         }
+
+        [When(@"incorrect fills the form")]
+        public void WhenIncorrectFillsTheForm()
+        {
+            _repositoryPage = _actionSteps.CreateNewProject(_projectsPage);
+        }
+
+        [Then(@"assert")]
+        public void ThenAssert()
+        {
+            Assert.That(_projectsPage.GetErrorText().Equals("Data is invalid."));
+        }
+
     }
 }

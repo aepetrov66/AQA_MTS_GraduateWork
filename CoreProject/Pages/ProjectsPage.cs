@@ -13,6 +13,7 @@ public class ProjectsPage : BasePage
     public CreateNewProjectDialog CreateNewProjectDialog;
     private static readonly By TitleBy = By.ClassName("uA6zAY");
     private static readonly By CreateProjectButtonBy = By.ClassName("TKsrzo");
+    private static readonly By ProjectCreationErrorBy = By.ClassName("xtWHgv");
     private static readonly By TableBy = By.CssSelector("table[class=P3tqoY]");
 
     // Инициализация класса
@@ -25,6 +26,7 @@ public class ProjectsPage : BasePage
     private IWebElement Title => WaitsHelper.WaitForVisibilityLocatedBy(TitleBy);
     private Button CreateProjectButton => new Button(Driver, CreateProjectButtonBy);
     private ProjectsTable Table => new ProjectsTable(Driver, TableBy);
+    private IWebElement ProjectCreationError => WaitsHelper.WaitForVisibilityLocatedBy(ProjectCreationErrorBy);
     
     // Методы действий с элементами
     public void CreateProjectButtonClick() 
@@ -40,4 +42,8 @@ public class ProjectsPage : BasePage
     }
 
     // Методы получения свойств
+    public string GetErrorText()
+    {
+        return ProjectCreationError.Text;
+    }
 }
