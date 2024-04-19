@@ -19,6 +19,16 @@ public class ActionSteps : BaseGuiStep
         return projectsPage.CreateNewProjectDialog.CreateProgectClick();
     }
 
+    public void CreateNewIncorrectProject(ProjectsPage projectsPage)
+    {
+        projectsPage.CreateNewProjectDialog.ProjectName("aaaaaaaaaaaaaaaaaaaaaaaaa");
+        projectsPage.CreateNewProjectDialog.ProjectCodeClear();
+        projectsPage.CreateNewProjectDialog.ProjectCode("bbbbbbbbbbB");
+        projectsPage.CreateNewProjectDialog.Description("Description");
+        projectsPage.CreateNewProjectDialog.RadioButtonSelect("public");
+        projectsPage.CreateNewProjectDialog.CreateProgectClick();
+    }
+
     public ProjectRepositoryPage CreateNewTestCase(CreateTestCasePage createNewTestCasePage, TestCase testCase)
     {
         createNewTestCasePage.FillTheNewTestCaseBasic(testCase);
@@ -27,7 +37,7 @@ public class ActionSteps : BaseGuiStep
 
     public ProjectRepositoryPage DeleteTestCase(ProjectRepositoryPage projectRepositoryPage)
     {
-        projectRepositoryPage.ChooseTestCase("a");
+        projectRepositoryPage.ChooseTestcase(3);
         projectRepositoryPage.DeleteClick();
         projectRepositoryPage.Confirm();
         return projectRepositoryPage.ConfirmButtonClick();

@@ -5,7 +5,7 @@ namespace CoreProject.Models;
 public class TestCase
 {
     public TestCase() { }
-    public string NewTestCaseTitle { get; set; } = "Some Title";
+    public string TestCaseTitle { get; set; } = "Some Title";
     public string Status { get; set; } = "Draft";
     public string Description { get; set; } = "Some description";
     public string Suite { get; set; } = "Test cases without suite";

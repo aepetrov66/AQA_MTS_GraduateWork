@@ -67,7 +67,7 @@ public class CreateTestCasePage : BasePage
 
     public void FillTheNewTestCaseBasic(TestCase testCase)
     {
-        FillNewTestCaseTitle(testCase.NewTestCaseTitle);
+        FillNewTestCaseTitle(testCase.TestCaseTitle);
         Status.SendKeys(testCase.Status);
         Description.SendKeys(testCase.Description);
         Suite.SendKeys(testCase.Suite);
