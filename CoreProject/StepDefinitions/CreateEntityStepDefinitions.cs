@@ -88,5 +88,24 @@ namespace CoreProject.StepDefinitions
             var list = _projectRepositoryPage.GetTescasesIds();
             Assert.That(!list.Contains(3));
         }
+
+        [When(@"user fill the NewTestCaseTitle")]
+        public void WhenUserFillTheNewTestCaseTitle()
+        {
+            _newTestCasePage.FillNewTestCaseTitle("afsdfasdf");
+        }
+
+        [When(@"user uploads file")]
+        public void WhenUserUploadsFile()
+        {
+            _newTestCasePage.AddAttachment("Dobby.jpg");
+        }
+
+        [Then(@"asser the file")]
+        public void ThenAsserTheFile()
+        {
+            Assert.That(_newTestCasePage.ImgExists());
+        }
+
     }
 }

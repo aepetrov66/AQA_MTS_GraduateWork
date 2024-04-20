@@ -35,5 +35,18 @@ namespace CoreProject.StepDefinitions
         {
             Assert.That(_projectsPage.IsPageOpened());
         }
+
+        [When(@"incorrect sign in")]
+        public void WhenIncorrectSignIn()
+        {
+            _loginPage = _navigationSteps.NotSignIn(_loginPage);
+        }
+
+        [Then(@"assert error message")]
+        public void ThenAssertErrorMessage()
+        {
+            Assert.That(_loginPage.GetErrorLabelText().Contains("does not match format email of type string"));
+        }
+
     }
 }

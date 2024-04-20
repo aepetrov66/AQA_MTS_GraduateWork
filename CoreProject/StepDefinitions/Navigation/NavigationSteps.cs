@@ -21,6 +21,15 @@ public class NavigationSteps : BaseGuiStep
         return new ProjectsPage(Driver);
     }
 
+    public LoginPage NotSignIn(LoginPage loginPage)
+    {
+        loginPage.EmaiWrite("asdfas");
+        loginPage.PswdWrite("adfasd");
+        loginPage.RememberMe(true);
+        loginPage.SignInClick();
+        return new LoginPage(Driver, false);
+    }
+
     public ProjectsPage NavigateToProjectPage()
     {
         LoginPage loginPage = NavigateToLoginPage();
