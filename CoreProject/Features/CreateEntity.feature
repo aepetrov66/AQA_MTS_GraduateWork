@@ -21,3 +21,10 @@ Feature: CreateEntity
 	Given open the Project
 	When user delete TestCase
 	Then there is no such testCase
+
+	@GUI
+	Scenario: UploadFile
+	Given open the Project
+	When user clicks CreateTestCaseButton
+	And user uploads file
+	Then asser the file
