@@ -54,6 +54,5 @@ namespace CoreProject.StepDefinitions
         {
             Assert.That(_projectsPage.GetErrorText().Equals("Data is invalid."));
         }
-
     }
 }

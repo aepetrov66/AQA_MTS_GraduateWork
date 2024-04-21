@@ -28,3 +28,8 @@ Feature: CreateEntity
 	When user clicks CreateTestCaseButton
 	And user uploads file
 	Then asser the file
+
+	@GUI
+	Scenario: AssertFile
+	Given open the Project
+	Then asser the file
