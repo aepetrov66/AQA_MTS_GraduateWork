@@ -1,7 +1,9 @@
-﻿namespace CoreProject.Models;
-public class User
+﻿using CoreProject.Models.Enums;
+
+namespace CoreProject.Models;
+public record User
 {
-    public string? Fullname { get; set; }
-    public required string Email { get; set; }
-    public required string Password { get; set; }
+    public UserType UserType { get; set; }
+    public string Username { get; init; } = string.Empty;
+    public string Password { get; init; } = string.Empty;
 }
