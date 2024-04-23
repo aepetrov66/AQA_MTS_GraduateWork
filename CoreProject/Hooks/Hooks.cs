@@ -8,12 +8,10 @@ namespace CoreProject.Hooks;
 public class Hooks
 {
     private readonly Browser _browser;
-    private TestDataSteps _testDataSteps;
 
     public Hooks(Browser browser, TestDataSteps testDataSteps)
     {
         _browser = browser;
-        _testDataSteps = testDataSteps;
     }
 
     [BeforeScenario("GUI")]

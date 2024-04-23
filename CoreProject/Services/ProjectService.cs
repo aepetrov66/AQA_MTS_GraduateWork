@@ -1,4 +1,5 @@
 ﻿using CoreProject.Clients;
+using CoreProject.Helpers;
 using CoreProject.Helpers.Configuration;
 using CoreProject.Models;
 using RestSharp;
@@ -23,6 +24,15 @@ public class ProjectService : IProjectService, IDisposable
 
         var projects = _client.Execute<Response<Projects>>(request);
         return projects.Data!;
+    }
+
+    public HttpStatusCode GetProjectBad(string projectId)
+    {
+        var request = new RestRequest("{project_id}").AddHeader("Token", Configurator.AppSettings.Token!)
+            .AddUrlSegment("project_id", projectId);
+
+        var projects = _client.Execute<Response<Projects>>(request);
+        return projects.StatusCode;
     }
 
     public Response<Project> GetProject(string projectId)

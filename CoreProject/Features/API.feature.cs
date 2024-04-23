@@ -93,7 +93,7 @@ namespace CoreProject.Features
             {
                 this.ScenarioStart();
 #line 5
- testRunner.Given("I send a GET request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("getProjects request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -119,7 +119,7 @@ namespace CoreProject.Features
             {
                 this.ScenarioStart();
 #line 9
- testRunner.Given("I send a GET request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("getProject request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -145,7 +145,7 @@ namespace CoreProject.Features
             {
                 this.ScenarioStart();
 #line 13
- testRunner.Given("I send a GET", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("unauthorized request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -171,21 +171,21 @@ namespace CoreProject.Features
             {
                 this.ScenarioStart();
 #line 17
- testRunner.Given("I seedfsfsdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("getUnexistingProject request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Incorrvs")]
+        [NUnit.Framework.DescriptionAttribute("Not found")]
         [NUnit.Framework.CategoryAttribute("API")]
-        public void Incorrvs()
+        public void NotFound()
         {
             string[] tagsOfScenario = new string[] {
                     "API"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Incorrvs", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Not found", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 20
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -197,21 +197,21 @@ namespace CoreProject.Features
             {
                 this.ScenarioStart();
 #line 21
- testRunner.Given("I sasdfasdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("getProject bad request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("asdfasdfasd")]
+        [NUnit.Framework.DescriptionAttribute("Invalid data")]
         [NUnit.Framework.CategoryAttribute("API")]
-        public void Asdfasdfasd()
+        public void InvalidData()
         {
             string[] tagsOfScenario = new string[] {
                     "API"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("asdfasdfasd", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invalid data", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 24
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -223,7 +223,33 @@ namespace CoreProject.Features
             {
                 this.ScenarioStart();
 #line 25
- testRunner.Given("I seeasdfaasdf", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("postProject with invalid data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Post project")]
+        [NUnit.Framework.CategoryAttribute("API")]
+        public void PostProject()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "API"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post project", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 28
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 29
+ testRunner.Given("postProjectRequest to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

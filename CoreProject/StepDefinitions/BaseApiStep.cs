@@ -9,10 +9,18 @@ namespace CoreProject.StepDefinitions;
 [Binding]
 public class BaseApiStep
 {
-    protected ProjectService? ProjectService;
-    protected readonly Logger Logger = LogManager.GetCurrentClassLogger();
+    protected ProjectService? ProjectService { get; }
+    protected ScenarioContext ScenarioContext { get; }
+    protected Logger Logger { get; }
 
-    [BeforeScenario("API")]
+    public BaseApiStep(ScenarioContext scenarioContext, ProjectService projectService)
+    {
+        ScenarioContext = scenarioContext;
+        Logger = LogManager.GetCurrentClassLogger();
+        ProjectService = projectService;
+    }
+
+    /*[BeforeScenario("API")]
     public void BeforeGUIScenario()
     {
         var restClient = new RestClientExtended();
@@ -23,5 +31,5 @@ public class BaseApiStep
     public void AfterScenario()
     {
         ProjectService?.Dispose();
-    }
+    }*/
 }
