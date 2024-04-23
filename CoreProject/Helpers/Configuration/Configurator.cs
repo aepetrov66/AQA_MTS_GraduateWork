@@ -76,7 +76,8 @@ public static class Configurator
         }
     }
 
-    public static User? Correct => Users.Find(x => x?.UserType == UserType.Correct);
+    public static User? CorrectUser => Users.Find(x => x?.UserType == UserType.Correct);
+    public static User? IncorrectUser => Users.Find(x => x?.UserType == UserType.Incorrect);
     public static string? Token => Configuration[nameof(Token)];
     public static string? BrowserType => Configuration[nameof(BrowserType)];
     public static double WaitsTimeout => Double.Parse(Configuration[nameof(WaitsTimeout)]!);

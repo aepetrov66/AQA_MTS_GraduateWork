@@ -5,16 +5,16 @@ namespace CoreProject.Models;
 public class TestCase
 {
     public TestCase() { }
-    public string TestCaseTitle { get; set; } = "Some Title";
-    public string Status { get; set; } = "Draft";
-    public string Description { get; set; } = "Some description";
-    public string Suite { get; set; } = "Test cases without suite";
-    public string Severity { get; set; } = "Normal";    
-    public string Priority { get; set; } = "Medium";
-    public string Type { get; set; } = "Regression";
-    public string Layer { get; set; } = "Unit";
-    public string IsFlaky { get; set; } = "No";
-    public string Milestone { get; set; } = "Not set";
-    public string Behavior { get; set; } = "Positive";
-    public string AutomationStatus { get; set; } = "Manual";
+    public string TestCaseTitle { get; set; }
+    public string Status { get; set; }
+    public string Description { get; set; }
+    public string Suite { get; set; }
+    public string Severity { get; set; }
+    public string Priority { get; set; }
+    public string Type { get; set; }
+    public string Layer { get; set; }
+    public string IsFlaky { get; set; }
+    public string Milestone { get; set; }
+    public string Behavior { get; set; }
+    public string AutomationStatus { get; set; }
 }

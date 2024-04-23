@@ -1,4 +1,6 @@
 using CoreProject.Core;
+using CoreProject.Helpers;
+using CoreProject.Models.Enums;
 using CoreProject.Pages;
 using CoreProject.StepDefinitions.Navigation;
 using CoreProject.StepDefinitions.UserActions;
@@ -13,10 +15,13 @@ namespace CoreProject.StepDefinitions
         private ProjectsPage _projectsPage;
         private NavigationSteps _navigationSteps;
         private ActionSteps _actionSteps;
+        private TestDataSteps _testDataSteps;
+
         public BoundaryValuesStepDefinitions(Browser browser, ScenarioContext scenarioContext) : base(browser, scenarioContext)
         {
             _navigationSteps = new NavigationSteps(browser, scenarioContext);
             _actionSteps = new ActionSteps(browser, scenarioContext);
+            _testDataSteps = new TestDataSteps();
         }
 
         [Given(@"open the ProjectsPage")]
@@ -31,28 +36,34 @@ namespace CoreProject.StepDefinitions
             _projectsPage.CreateProjectButtonClick();
         }
 
-        [When(@"fills the form")]
-        public void WhenEnterToTheProjectNameField()
+        [When(@"creates a ""([^""]*)"" project")]
+        public void WhenCreatesAProject(string dataTypeString)
         {
-            _repositoryPage = _actionSteps.CreateNewProject(_projectsPage);
+            switch (dataTypeString.ToLower())
+            {
+                case "correct":
+                    Logger.Info("Позитивный тестовый сценарий");
+                    _repositoryPage = _actionSteps.CreateNewProject<ProjectRepositoryPage>(_projectsPage, TestDataType.Correct);
+                    break;
+                case "incorrect":
+                    Logger.Info("Негативный тестовый сценарий");
+                    _projectsPage = _actionSteps.CreateNewProject<ProjectsPage>(_projectsPage, TestDataType.Incorrect);
+                    break;
+            }
         }
 
         [Then(@"enter a new Project repository")]
         public void WhenEnterToTheProjectNameField1()
         {
-            Assert.That(_repositoryPage.IsPageOpened() && _repositoryPage.GetProjectCode().Equals("BBBBBBBBBB"));
+            Assert.That(_repositoryPage.IsPageOpened() && _repositoryPage.GetProjectCode().Equals(TestData.CorrectProject.Code));
+            _testDataSteps.DeleteTestProject();
         }
 
-        [When(@"incorrect fills the form")]
-        public void WhenIncorrectFillsTheForm()
-        {
-            _repositoryPage = _actionSteps.CreateNewProject(_projectsPage);
-        }
-
-        [Then(@"assert")]
+        [Then(@"Project is not created")]
         public void ThenAssert()
         {
             Assert.That(_projectsPage.GetErrorText().Equals("Data is invalid."));
+            Logger.Info($"Ошибка при создании проекта: {_projectsPage.GetErrorText()}");
         }
     }
 }

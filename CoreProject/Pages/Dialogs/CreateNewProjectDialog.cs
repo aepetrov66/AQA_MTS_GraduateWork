@@ -26,9 +26,10 @@ public class CreateNewProjectDialog : BaseDialog
     private Input DescriptionInput => new Input(Driver, DescriptionInputBy);
     private Button CreateProjectButton => new Button(Driver, CreateProjectButtonBy);
     private List<RadioButton> RadioButtons => WaitsHelper.WaitForPresenceOfAllRadioButtonsLocatedBy(RadioButtonsBy);
-    
+
 
     // Методы действий с элементами
+    public void ProjectNameClear() => ProjectNameInput.Clear();
     public void ProjectName(string projectName) => ProjectNameInput.SendKeys(projectName);
     public void ProjectCodeClear() => ProjectCodeInput.Clear();
     public void ProjectCode(string projectCode) => ProjectCodeInput.SendKeys(projectCode);
@@ -48,6 +49,12 @@ public class CreateNewProjectDialog : BaseDialog
     {
         CreateProjectButton.Click();
         return new ProjectRepositoryPage(Driver);
+    }
+
+    public T CreateProgectClick<T>() where T : BasePage
+    {
+        CreateProjectButton.Click();
+        return Activator.CreateInstance(typeof(T), new object[] { Driver }) as T;
     }
     // Методы получения свойств
 }

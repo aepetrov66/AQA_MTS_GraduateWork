@@ -1,5 +1,8 @@
 ﻿using CoreProject.Core;
+using CoreProject.Helpers;
 using CoreProject.Helpers.Configuration;
+using CoreProject.Models.Enums;
+using CoreProject.Models;
 using CoreProject.Pages;
 
 namespace CoreProject.StepDefinitions.Navigation;
@@ -12,28 +15,31 @@ public class NavigationSteps : BaseGuiStep
         return new LoginPage(Driver, true);
     }
 
-    public ProjectsPage SignIn(LoginPage loginPage) 
+    public T SignIn<T>(LoginPage loginPage, TestDataType testDataType) where T: BasePage
     {
-        loginPage.EmaiWrite(Configurator.AppSettings.Username);
-        loginPage.PswdWrite(Configurator.AppSettings.Password);
+        User user;
+        switch (testDataType)
+        {
+            case TestDataType.Correct:
+                user = Configurator.CorrectUser ?? throw new InvalidOperationException();
+                break;
+            case TestDataType.Incorrect:
+                user = Configurator.IncorrectUser ?? throw new InvalidOperationException();
+                break;
+            default:
+                Logger.Error($"Тестовые данные не найдены");
+                throw new InvalidOperationException();
+        }
+        loginPage.EmaiWrite(user.Username);
+        loginPage.PswdWrite(user.Password);
         loginPage.RememberMe(false);
-        loginPage.SignInClick();
-        return new ProjectsPage(Driver);
-    }
-
-    public LoginPage NotSignIn(LoginPage loginPage)
-    {
-        loginPage.EmaiWrite("asdfas");
-        loginPage.PswdWrite("adfasd");
-        loginPage.RememberMe(true);
-        loginPage.SignInClick();
-        return new LoginPage(Driver, false);
+        return loginPage.SignInClick<T>();
     }
 
     public ProjectsPage NavigateToProjectPage()
     {
         LoginPage loginPage = NavigateToLoginPage();
-        return SignIn(loginPage);
+        return SignIn<ProjectsPage>(loginPage, TestDataType.Correct);
     }
 
     public ProjectRepositoryPage NavigateToProjectRepositoryPage(string projectName)

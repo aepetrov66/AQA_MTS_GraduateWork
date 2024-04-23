@@ -5,26 +5,31 @@ using CoreProject.StepDefinitions;
 namespace CoreProject.Hooks;
 
 [Binding]
-public class Hooks
+public class EntityHooks
 {
     private readonly Browser _browser;
-    private TestDataSteps _testDataSteps;
+    private readonly TestDataSteps _testDataSteps;
 
-    public Hooks(Browser browser, TestDataSteps testDataSteps)
+    public EntityHooks(Browser browser, TestDataSteps testDataSteps)
     {
         _browser = browser;
         _testDataSteps = testDataSteps;
     }
 
-    [BeforeScenario("GUI")]
+    [BeforeScenario("ENTITY")]
     public void BeforeGUIScenario()
     {
         _browser.Driver.Navigate().GoToUrl(Configurator.AppSettings.URL);
+
+        _testDataSteps.CreateTestProject();
+        _testDataSteps.CreateTestCase();
+        _testDataSteps.CreateTestCase();
     }
 
-    [AfterScenario("GUI")]
+    [AfterScenario("ENTITY")]
     public void AfterScenario()
     {
+        _testDataSteps.DeleteTestProject();
         _browser.Driver.Quit();
     }
 }

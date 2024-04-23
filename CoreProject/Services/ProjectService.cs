@@ -4,6 +4,7 @@ using CoreProject.Models;
 using RestSharp;
 using System.Net;
 using System.Text.Json;
+using TechTalk.SpecFlow.Assist;
 
 namespace CoreProject.Services;
 
@@ -38,6 +39,13 @@ public class ProjectService : IProjectService, IDisposable
             .AddJsonBody(JsonSerializer.Serialize(json));
 
         return _client.Execute<Response<Project>>(request).Data!;
+    }
+
+    public HttpStatusCode DeleteProject(string projectCode)
+    {
+        var request = new RestRequest("project/{projectCode}", Method.Delete).AddHeader("Token", Configurator.AppSettings.Token!)
+            .AddUrlSegment("projectCode", projectCode);
+        return _client.Execute(request).StatusCode;
     }
 
     public HttpStatusCode Unauthorized()

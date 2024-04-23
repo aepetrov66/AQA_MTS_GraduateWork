@@ -1,32 +1,44 @@
-﻿using CoreProject.Core;
+﻿using CoreProject.Clients;
+using CoreProject.Core;
+using CoreProject.Helpers;
 using CoreProject.Helpers.Configuration;
 using CoreProject.Models;
+using CoreProject.Models.Enums;
 using CoreProject.Pages;
+using CoreProject.Services;
 
 namespace CoreProject.StepDefinitions.UserActions;
 
 public class ActionSteps : BaseGuiStep
 {
-    public ActionSteps(Browser browser, ScenarioContext scenarioContext) : base(browser, scenarioContext) { }
-
-    public ProjectRepositoryPage CreateNewProject(ProjectsPage projectsPage)
+    private ProjectService? ProjectService;
+    public ActionSteps(Browser browser, ScenarioContext scenarioContext) : base(browser, scenarioContext)
     {
-        projectsPage.CreateNewProjectDialog.ProjectName("aaaaaaaaaaaaaaaaaaaaaaaaa");
-        projectsPage.CreateNewProjectDialog.ProjectCodeClear();
-        projectsPage.CreateNewProjectDialog.ProjectCode("bbbbbbbbbb");
-        projectsPage.CreateNewProjectDialog.Description("Description");
-        projectsPage.CreateNewProjectDialog.RadioButtonSelect("public");
-        return projectsPage.CreateNewProjectDialog.CreateProgectClick();
+        var restClient = new RestClientExtended();
+        var projectService = new ProjectService(restClient);
     }
 
-    public void CreateNewIncorrectProject(ProjectsPage projectsPage)
+    public T CreateNewProject<T>(ProjectsPage projectsPage, TestDataType testDataType) where T : BasePage
     {
-        projectsPage.CreateNewProjectDialog.ProjectName("aaaaaaaaaaaaaaaaaaaaaaaaa");
+        Project project;
+        switch (testDataType)
+        {
+            case TestDataType.Correct:
+                project = TestData.CorrectProject ?? throw new InvalidOperationException();
+                break;
+            case TestDataType.Incorrect:
+                project = TestData.IncorrectProject ?? throw new InvalidOperationException();
+                break;
+            default: Logger.Error($"Тестовые данные не найдены");
+                throw new InvalidOperationException();
+        }
+        projectsPage.CreateNewProjectDialog.ProjectNameClear();
+        projectsPage.CreateNewProjectDialog.ProjectName(project.Title!);
         projectsPage.CreateNewProjectDialog.ProjectCodeClear();
-        projectsPage.CreateNewProjectDialog.ProjectCode("bbbbbbbbbbB");
-        projectsPage.CreateNewProjectDialog.Description("Description");
+        projectsPage.CreateNewProjectDialog.ProjectCode(project.Code!);
+        projectsPage.CreateNewProjectDialog.Description("Some description.");
         projectsPage.CreateNewProjectDialog.RadioButtonSelect("public");
-        projectsPage.CreateNewProjectDialog.CreateProgectClick();
+        return projectsPage.CreateNewProjectDialog.CreateProgectClick<T>();
     }
 
     public ProjectRepositoryPage CreateNewTestCase(CreateTestCasePage createNewTestCasePage, TestCase testCase)
@@ -37,7 +49,7 @@ public class ActionSteps : BaseGuiStep
 
     public ProjectRepositoryPage DeleteTestCase(ProjectRepositoryPage projectRepositoryPage)
     {
-        projectRepositoryPage.ChooseTestcase(3);
+        projectRepositoryPage.ChooseTestcase(1);
         projectRepositoryPage.DeleteClick();
         projectRepositoryPage.Confirm();
         return projectRepositoryPage.ConfirmButtonClick();

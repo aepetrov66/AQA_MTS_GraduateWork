@@ -1,6 +1,7 @@
 ﻿using CoreProject.Clients;
 using CoreProject.Core;
 using CoreProject.Services;
+using NLog;
 using OpenQA.Selenium;
 
 namespace CoreProject.StepDefinitions;
@@ -9,6 +10,7 @@ namespace CoreProject.StepDefinitions;
 public class BaseApiStep
 {
     protected ProjectService? ProjectService;
+    protected readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     [BeforeScenario("API")]
     public void BeforeGUIScenario()

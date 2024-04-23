@@ -74,14 +74,14 @@ namespace CoreProject.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("PopUpMessage")]
-        [NUnit.Framework.CategoryAttribute("GUI")]
+        [NUnit.Framework.DescriptionAttribute("PopUpMessage (���� ����������� ����������� ����)")]
+        [NUnit.Framework.CategoryAttribute("ENTITY")]
         public void PopUpMessage()
         {
             string[] tagsOfScenario = new string[] {
-                    "GUI"};
+                    "ENTITY"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PopUpMessage", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PopUpMessage (���� ����������� ����������� ����)", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 4
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,7 +99,7 @@ namespace CoreProject.Features
  testRunner.When("user clicks CreateTestCaseButton", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 7
- testRunner.And("user fill the NewTestCaseTitle", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user fills the TestCaseBasic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
  testRunner.And("navigate Backward", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -112,14 +112,14 @@ namespace CoreProject.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CreateTestCaseEntity")]
-        [NUnit.Framework.CategoryAttribute("GUI")]
+        [NUnit.Framework.DescriptionAttribute("CreateTestCaseEntity (���� �� �������� ��������)")]
+        [NUnit.Framework.CategoryAttribute("ENTITY")]
         public void CreateTestCaseEntity()
         {
             string[] tagsOfScenario = new string[] {
-                    "GUI"};
+                    "ENTITY"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateTestCaseEntity", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateTestCaseEntity (���� �� �������� ��������)", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 12
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -150,14 +150,14 @@ namespace CoreProject.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("DeleteTestCaseEntity")]
-        [NUnit.Framework.CategoryAttribute("GUI")]
+        [NUnit.Framework.DescriptionAttribute("DeleteTestCaseEntity (���� �� �������� ��������)")]
+        [NUnit.Framework.CategoryAttribute("ENTITY")]
         public void DeleteTestCaseEntity()
         {
             string[] tagsOfScenario = new string[] {
-                    "GUI"};
+                    "ENTITY"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("DeleteTestCaseEntity", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("DeleteTestCaseEntity (���� �� �������� ��������)", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 20
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -182,14 +182,14 @@ namespace CoreProject.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("UploadFile")]
-        [NUnit.Framework.CategoryAttribute("GUI")]
+        [NUnit.Framework.DescriptionAttribute("UploadFile (���� �� �������� �����)")]
+        [NUnit.Framework.CategoryAttribute("ENTITY")]
         public void UploadFile()
         {
             string[] tagsOfScenario = new string[] {
-                    "GUI"};
+                    "ENTITY"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("UploadFile", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("UploadFile (���� �� �������� �����)", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 26
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -210,21 +210,21 @@ namespace CoreProject.Features
  testRunner.And("user uploads file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 30
- testRunner.Then("asser the file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("assert the file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AssertFile")]
-        [NUnit.Framework.CategoryAttribute("GUI")]
+        [NUnit.Framework.DescriptionAttribute("AssertFile (���� ��������������� ����� ������)")]
+        [NUnit.Framework.CategoryAttribute("ENTITY")]
         public void AssertFile()
         {
             string[] tagsOfScenario = new string[] {
-                    "GUI"};
+                    "ENTITY"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AssertFile", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AssertFile (���� ��������������� ����� ������)", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 33
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -239,7 +239,7 @@ namespace CoreProject.Features
  testRunner.Given("open the Project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 35
- testRunner.Then("asser the file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("assert the file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

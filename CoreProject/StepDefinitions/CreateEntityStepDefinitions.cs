@@ -1,4 +1,5 @@
 using CoreProject.Core;
+using CoreProject.Helpers;
 using CoreProject.Models;
 using CoreProject.Pages;
 using CoreProject.StepDefinitions.Navigation;
@@ -27,7 +28,7 @@ namespace CoreProject.StepDefinitions
         [Given(@"open the Project")]
         public void GivenOpenTheProject()
         {
-            _projectRepositoryPage = _navigationSteps.NavigateToProjectRepositoryPage("DDDDDDDDDDDDDDDDDDDDDDDDD");
+            _projectRepositoryPage = _navigationSteps.NavigateToProjectRepositoryPage(TestData.CorrectProject.Title);
         }
 
         [When(@"user clicks CreateTestCaseButton")]
@@ -36,10 +37,10 @@ namespace CoreProject.StepDefinitions
             _newTestCasePage = _projectRepositoryPage.CreateCaseButtonClick();
         }
 
-        [When(@"user fill the TestCaseTitle")]
-        public void AndUserFillTheNewTestCaseTitle()
+        [When(@"user fills the TestCaseBasic")]
+        public void WhenUserFillsTheTestCaseBasic()
         {
-            _newTestCasePage.FillNewTestCaseTitle("Smth");
+            _projectRepositoryPage = _actionSteps.CreateNewTestCase(_newTestCasePage, TestData.TestCase);
         }
 
         [When(@"navigate Backward")]
@@ -53,14 +54,9 @@ namespace CoreProject.StepDefinitions
         {
             IAlert alert = Driver.SwitchTo().Alert();
             Assert.That(alert.Text, Is.EqualTo("Are you sure you want to leave?"));
+            Logger.Info($"Текст всплывающего сообщения: {alert.Text}");
             alert.Accept();
             _projectRepositoryPage.IsPageOpened();
-        }
-
-        [When(@"user fills the TestCaseBasic")]
-        public void WhenUserFillsTheTestCaseBasic()
-        {
-            _projectRepositoryPage = _actionSteps.CreateNewTestCase(_newTestCasePage, new TestCase());
         }
 
         [Then(@"assert the ProjectRepository page is open")]
@@ -72,7 +68,7 @@ namespace CoreProject.StepDefinitions
         [Then(@"new testCase is created")]
         public void ThenNewTestCaseIsCreated()
         {
-            Assert.That(_projectRepositoryPage.LatestTestCaseTitleAssert("Some Title"));
+            Assert.That(_projectRepositoryPage.LatestTestCaseTitleAssert(TestData.TestCase.TestCaseTitle));
         }
 
         [When(@"user delete TestCase")]
@@ -86,7 +82,7 @@ namespace CoreProject.StepDefinitions
         {
             Driver.Navigate().Refresh();
             var list = _projectRepositoryPage.GetTescasesIds();
-            Assert.That(!list.Contains(3));
+            Assert.That(!list.Contains(1));
         }
 
         [When(@"user fill the NewTestCaseTitle")]
@@ -101,11 +97,10 @@ namespace CoreProject.StepDefinitions
             _newTestCasePage.AddAttachment("Dobby.jpg");
         }
 
-        [Then(@"asser the file")]
+        [Then(@"assert the file")]
         public void ThenAsserTheFile()
         {
             Assert.That(_newTestCasePage.ImgExists());
         }
-
     }
 }
