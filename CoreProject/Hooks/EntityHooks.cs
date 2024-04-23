@@ -1,6 +1,10 @@
-﻿using CoreProject.Core;
+﻿using Allure.Net.Commons;
+using CoreProject.Core;
 using CoreProject.Helpers.Configuration;
 using CoreProject.StepDefinitions;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using System.Text;
 
 namespace CoreProject.Hooks;
 
@@ -12,6 +16,7 @@ public class EntityHooks
 
     public EntityHooks(Browser browser, TestDataSteps testDataSteps)
     {
+
         _browser = browser;
         _testDataSteps = testDataSteps;
     }
@@ -29,6 +34,15 @@ public class EntityHooks
     [AfterScenario("ENTITY")]
     public void AfterScenario()
     {
+        if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
+        {
+            Screenshot screenshot = ((ITakesScreenshot)_browser.Driver).GetScreenshot();
+            byte[] screenshotBytes = screenshot.AsByteArray;
+
+            AllureApi.AddAttachment("Screenshot", "image/png", screenshotBytes);
+            AllureApi.AddAttachment("data.txt", "text/plain", Encoding.UTF8.GetBytes("This os the file content."));
+        }
+
         _testDataSteps.DeleteTestProject();
         _browser.Driver.Quit();
     }

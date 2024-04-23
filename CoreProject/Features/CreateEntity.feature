@@ -32,4 +32,4 @@ Feature: CreateEntity
 	@ENTITY
 	Scenario: AssertFile (тест воспроизводящий любой дефект)
 	Given open the Project
-	Then assert the file
+	Then fail

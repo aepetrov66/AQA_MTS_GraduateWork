@@ -102,5 +102,12 @@ namespace CoreProject.StepDefinitions
         {
             Assert.That(_newTestCasePage.ImgExists());
         }
+
+        [Then(@"fail")]
+        public void ThenFail()
+        {
+            Assert.That(false);
+        }
+
     }
 }
