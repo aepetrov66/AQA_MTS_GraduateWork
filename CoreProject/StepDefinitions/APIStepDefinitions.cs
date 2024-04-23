@@ -1,4 +1,6 @@
 using CoreProject.Clients;
+using CoreProject.Core;
+using CoreProject.Helpers;
 using CoreProject.Models;
 using CoreProject.Services;
 using NLog;
@@ -14,48 +16,51 @@ namespace CoreProject.StepDefinitions;
 [Binding]
 public class APIStepDefinitions : BaseApiStep
 {
-    private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+    private TestDataSteps _testDataSteps;
+    public APIStepDefinitions(ScenarioContext scenarioContext, ProjectService projectService) : base(scenarioContext, projectService)
+    {
+        _testDataSteps = new TestDataSteps();
+    }
 
-
-    [Given(@"I send a GET request to the endpoint")]
+    [Given(@"getProjects request to the endpoint")]
     public void GivenISendAGETRequestToTheEndpoint()
     {
         var response = ProjectService!.GetProjects();
         Assert.Multiple(() =>
         {
             Assert.That(response.Result.Count == response.Result.Entities.Count());
-            Assert.That(response.Result.Entities.Select(x => x.Code.Equals("DEMO")).First());
+            Assert.That(response.Result.Entities.Select(x => x.Code.Equals(TestData.CorrectProject.Code)).First());
         });
     }
 
-    [Given(@"I send a GET request")]
+    [Given(@"getProject request to the endpoint")]
     public void GivenISendAGETRequest()
     {
-        var response = ProjectService!.GetProject("DEMO");
-        Assert.That(response.Result.Title.Equals("Demo Project"));
+        var response = ProjectService!.GetProject(TestData.CorrectProject.Code);
+        Assert.That(response.Result.Title.Equals(TestData.CorrectProject.Title));
     }
 
-    [Given(@"I send a GET")]
+    [Given(@"unauthorized request to the endpoint")]
     public void GivenISendAGET()
     {
         var response = ProjectService!.Unauthorized();
         Assert.That(response.Equals(HttpStatusCode.Unauthorized));
     }
 
-    [Given(@"I seedfsfsdf")]
+    [Given(@"getUnexistingProject request to the endpoint")]
     public void GivenISeedfsfsdf()
     {
-        var response = ProjectService!.GetProject("DEMOd");
+        var response = ProjectService!.GetProject(TestData.IncorrectProject.Code);
         Assert.That(!response.Status);
         Assert.That(response.ErrorMessage.Equals("Project not found"));
     }
 
-    [Given(@"I sasdfasdf")]
+    [Given(@"postProject with invalid data")]
     public void GivenISasdfasdf()
     {
         Dictionary<string, object> json = new Dictionary<string, object>();
-        json.Add("title", "dfsdfsdf");
-        json.Add("code", "asdfasdfasdfasdfasdf");
+        json.Add("title", TestData.IncorrectProject.Title);
+        json.Add("code", TestData.IncorrectProject.Code);
         
 
         var response = ProjectService!.AddProject(json);
@@ -64,18 +69,26 @@ public class APIStepDefinitions : BaseApiStep
         Assert.That(response.ErrorMessage.Equals("Data is invalid."));
     }
 
-    [Given(@"I seeasdfaasdf")]
+    [Given(@"postProjectRequest to the endpoint")]
     public void GivenISeeasdfaasdf()
     {
+        _testDataSteps.DeleteTestProject();
         Dictionary<string, object> json = new Dictionary<string, object>();
-        json.Add("title", "dfsdfxxxsdf");
-        json.Add("code", "xxxx");
+        json.Add("title", TestData.CorrectProject.Title);
+        json.Add("code", TestData.CorrectProject.Code);
 
 
         var response = ProjectService!.AddProject(json);
 
         Assert.That(response.Status);
-        Assert.That(response.Result.Code.ToLower().Equals("xxxx"));
+        Assert.That(response.Result.Code.ToLower().Equals(TestData.CorrectProject.Code.ToLower()));
+    }
+
+    [Given(@"getProject bad request to the endpoint")]
+    public void GivenFasdfasdf()
+    {
+        var response = ProjectService!.GetProjectBad(TestData.IncorrectProject.Code);
+        Assert.That(response.Equals(HttpStatusCode.NotFound));
     }
 
 }

@@ -2,24 +2,28 @@ Feature: API
 
 	@API
 	Scenario: Get all testcases
-	Given I send a GET request to the endpoint
+	Given getProjects request to the endpoint
 
 	@API
 	Scenario: Get a project
-	Given I send a GET request
+	Given getProject request to the endpoint
 
 	@API
 	Scenario: Get Unauthorized error
-	Given I send a GET
+	Given unauthorized request to the endpoint
 
 	@API
 	Scenario: Not found project
-	Given I seedfsfsdf
+	Given getUnexistingProject request to the endpoint
 
 	@API
-	Scenario: Incorrvs
-	Given I sasdfasdf
+	Scenario: Not found
+	Given getProject bad request to the endpoint
 
 	@API
-	Scenario: asdfasdfasd
-	Given I seeasdfaasdf
+	Scenario: Invalid data
+	Given postProject with invalid data
+
+	@API
+	Scenario: Post project
+	Given postProjectRequest to the endpoint
