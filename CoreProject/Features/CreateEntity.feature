@@ -1,35 +1,35 @@
 Feature: CreateEntity
 
-	@GUI
-	Scenario: PopUpMessage
+	@ENTITY
+	Scenario: PopUpMessage (тест отображения диалогового окна)
 	Given open the Project
 	When user clicks CreateTestCaseButton
-	And user fill the NewTestCaseTitle
+	And user fills the TestCaseBasic
 	And navigate Backward
 	Then assert the PopUp
 
-	@GUI
-	Scenario: CreateTestCaseEntity
+	@ENTITY
+	Scenario: CreateTestCaseEntity (тест на создание сущности)
 	Given open the Project
 	When user clicks CreateTestCaseButton
 	And user fills the TestCaseBasic
 	Then assert the ProjectRepository page is open
 	And new testCase is created
 
-	@GUI
-	Scenario: DeleteTestCaseEntity
+	@ENTITY
+	Scenario: DeleteTestCaseEntity (тест на удаление сущности)
 	Given open the Project
 	When user delete TestCase
 	Then there is no such testCase
 
-	@GUI
-	Scenario: UploadFile
+	@ENTITY
+	Scenario: UploadFile (тест на загрузку файла)
 	Given open the Project
 	When user clicks CreateTestCaseButton
 	And user uploads file
-	Then asser the file
+	Then assert the file
 
-	@GUI
-	Scenario: AssertFile
+	@ENTITY
+	Scenario: AssertFile (тест воспроизводящий любой дефект)
 	Given open the Project
-	Then asser the file
+	Then assert the file

@@ -15,6 +15,7 @@ public class LoginPage : BasePage
     private static readonly By ErrorLabelBy = By.CssSelector("span[class=xtWHgv]");
 
     // Инициализация класса
+    public LoginPage(IWebDriver driver) : base(driver, false) { }
     public LoginPage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl) { }
     protected override string GetEndpoint() => END_POINT;
     public override bool IsPageOpened() => EmailInput.Displayed && PswdInput.Displayed;
@@ -28,7 +29,11 @@ public class LoginPage : BasePage
     private IWebElement ErrorLabel => WaitsHelper.WaitForExists(ErrorLabelBy);
 
     // Методы действий с элементами
-    public void SignInClick() => SignInButton.Click();
+    public T SignInClick<T>() where T: BasePage
+    {
+        SignInButton.Click();
+        return Activator.CreateInstance(typeof(T), new object[] { Driver }) as T;
+    }
     public void EmaiWrite(string email) => EmailInput.SendKeys(email);
     public void PswdWrite(string pswd) => PswdInput.SendKeys(pswd);
     public void RememberMe(bool remember) => RememberMeBox.CheckTheBox(remember);

@@ -1,0 +1,28 @@
+{
+  "Projects": [
+    {
+      "testDataType": "correct",
+      "title": "testProject",
+      "code": "TEST"
+    },
+    {
+      "testDataType": "incorrect",
+      "title": "testProjectWithIncorrectCode",
+      "code": "ABCDEFJHIJKLMNOPQRSTUVWXYZ"
+    }
+  ],
+  "Testcase": {
+    "testCaseTitle": "Some Title",
+    "status": "Draft",
+    "description": "Some description",
+    "suite": "Test cases without suite",
+    "severity": "Normal",
+    "priority": "Medium",
+    "type": "Regression",
+    "layer": "Unit",
+    "isFlaky": "No",
+    "milestone": "Not set",
+    "behavior": "Positive",
+    "automationStatus": "Manual"
+  }
+}

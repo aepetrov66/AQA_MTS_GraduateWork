@@ -35,7 +35,7 @@ public class WaitsHelper
 
     public List<RadioButton> WaitForPresenceOfAllRadioButtonsLocatedBy(By locator)
     {
-        List<RadioButton> radioButtons = new List<RadioButton>();
+        List<RadioButton> radioButtons = new();
         ReadOnlyCollection<IWebElement> elements = _wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(locator));
         foreach(var element in elements)
         {
@@ -90,7 +90,7 @@ public class WaitsHelper
     public IWebElement FluentWaitForElement(By locator)
     {
         // Инициализация и параметризация FluentWait
-        WebDriverWait fluentWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(12))
+        WebDriverWait fluentWait = new(_driver, TimeSpan.FromSeconds(12))
         {
             PollingInterval = TimeSpan.FromMilliseconds(50)
         };

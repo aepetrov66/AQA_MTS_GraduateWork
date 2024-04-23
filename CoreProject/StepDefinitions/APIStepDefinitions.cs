@@ -1,23 +1,29 @@
 using CoreProject.Clients;
 using CoreProject.Models;
 using CoreProject.Services;
+using NLog;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using RestSharp;
 using System.Net;
+using TechTalk.SpecFlow.Analytics.AppInsights;
+using Logger = NLog.Logger;
 
 namespace CoreProject.StepDefinitions;
 
 [Binding]
 public class APIStepDefinitions : BaseApiStep
 {
-    
+    private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
+
     [Given(@"I send a GET request to the endpoint")]
     public void GivenISendAGETRequestToTheEndpoint()
     {
         var response = ProjectService!.GetProjects();
         Assert.Multiple(() =>
         {
-            Assert.That(response.Result.Total == response.Result.Entities.Count());
+            Assert.That(response.Result.Count == response.Result.Entities.Count());
             Assert.That(response.Result.Entities.Select(x => x.Code.Equals("DEMO")).First());
         });
     }
@@ -63,13 +69,13 @@ public class APIStepDefinitions : BaseApiStep
     {
         Dictionary<string, object> json = new Dictionary<string, object>();
         json.Add("title", "dfsdfxxxsdf");
-        json.Add("code", "xxx");
+        json.Add("code", "xxxx");
 
 
         var response = ProjectService!.AddProject(json);
 
         Assert.That(response.Status);
-        Assert.That(response.Result.Code.ToLower().Equals("xxx"));
+        Assert.That(response.Result.Code.ToLower().Equals("xxxx"));
     }
 
 }

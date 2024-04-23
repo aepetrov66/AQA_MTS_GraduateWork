@@ -74,14 +74,14 @@ namespace CoreProject.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CreateProject")]
+        [NUnit.Framework.DescriptionAttribute("CreateProject (�������� ���� ��� ����� �� ��������� ��������)")]
         [NUnit.Framework.CategoryAttribute("GUI")]
         public void CreateProject()
         {
             string[] tagsOfScenario = new string[] {
                     "GUI"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateProject", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateProject (�������� ���� ��� ����� �� ��������� ��������)", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 4
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,7 +99,7 @@ namespace CoreProject.Features
  testRunner.When("user clicks Create new project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 7
- testRunner.And("fills the form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("creates a \"Correct\" project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
  testRunner.Then("enter a new Project repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -109,14 +109,16 @@ namespace CoreProject.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CreateProjectWithIncorrectId")]
+        [NUnit.Framework.DescriptionAttribute("CreateProjectWithIncorrectCode (���� ������ ����������� ���������� + ����������� " +
+            "���������)")]
         [NUnit.Framework.CategoryAttribute("GUI")]
-        public void CreateProjectWithIncorrectId()
+        public void CreateProjectWithIncorrectCode()
         {
             string[] tagsOfScenario = new string[] {
                     "GUI"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateProjectWithIncorrectId", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateProjectWithIncorrectCode (���� ������ ����������� ���������� + ����������� " +
+                    "���������)", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 11
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -134,10 +136,10 @@ namespace CoreProject.Features
  testRunner.When("user clicks Create new project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
- testRunner.And("incorrect fills the form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("creates a \"Incorrect\" project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.Then("assert", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Project is not created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
