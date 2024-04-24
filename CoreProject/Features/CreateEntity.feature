@@ -1,35 +1,43 @@
+@allure.label.epic:GUI
+@allure.label.suite:GUI
+@allure.label.subSuite:CreateEntity
 Feature: CreateEntity
 
+	@allure.label.story:EntityTest
 	@ENTITY
-	Scenario: PopUpMessage (тест отображения диалогового окна)
+	Scenario: PopUpMessage
 	Given open the Project
 	When user clicks CreateTestCaseButton
 	And user fills the TestCaseBasic
 	And navigate Backward
 	Then assert the PopUp
 
+	@allure.label.story:EntityTest
 	@ENTITY
-	Scenario: CreateTestCaseEntity (тест на создание сущности)
+	Scenario: CreateTestCaseEntity
 	Given open the Project
 	When user clicks CreateTestCaseButton
 	And user fills the TestCaseBasic
 	Then assert the ProjectRepository page is open
 	And new testCase is created
 
+	@allure.label.story:EntityTest
 	@ENTITY
-	Scenario: DeleteTestCaseEntity (тест на удаление сущности)
+	Scenario: DeleteTestCaseEntity
 	Given open the Project
 	When user delete TestCase
 	Then there is no such testCase
 
+	@allure.label.story:EntityTest
 	@ENTITY
-	Scenario: UploadFile (тест на загрузку файла)
+	Scenario: UploadFile
 	Given open the Project
 	When user clicks CreateTestCaseButton
 	And user uploads file
 	Then assert the file
 
+	@allure.label.story:EntityTest
 	@ENTITY
-	Scenario: AssertFile (тест воспроизводящий любой дефект)
+	Scenario: AssertFile
 	Given open the Project
-	Then assert the file
+	Then fail

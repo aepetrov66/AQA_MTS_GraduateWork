@@ -4,6 +4,7 @@ using CoreProject.Helpers.Configuration;
 using CoreProject.Models.Enums;
 using CoreProject.Models;
 using CoreProject.Pages;
+using Allure.Net.Commons;
 
 namespace CoreProject.StepDefinitions.Navigation;
 public class NavigationSteps : BaseGuiStep
@@ -17,6 +18,7 @@ public class NavigationSteps : BaseGuiStep
 
     public T SignIn<T>(LoginPage loginPage, TestDataType testDataType) where T: BasePage
     {
+        AllureApi.Step($"Логин генерик");
         User user;
         switch (testDataType)
         {
@@ -38,12 +40,14 @@ public class NavigationSteps : BaseGuiStep
 
     public ProjectsPage NavigateToProjectPage()
     {
+        AllureApi.Step($"Идем в меню проекты");
         LoginPage loginPage = NavigateToLoginPage();
         return SignIn<ProjectsPage>(loginPage, TestDataType.Correct);
     }
 
     public ProjectRepositoryPage NavigateToProjectRepositoryPage(string projectName)
     {
+        AllureApi.Step($"Идем в репозиторий проекта");
         ProjectsPage projectsPage = NavigateToProjectPage();
         return projectsPage.OpenProjectRepository(projectName);
     }

@@ -21,12 +21,18 @@ namespace CoreProject.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("BoundaryValues")]
+    [NUnit.Framework.CategoryAttribute("allure.label.epic:GUI")]
+    [NUnit.Framework.CategoryAttribute("allure.label.suite:GUI")]
+    [NUnit.Framework.CategoryAttribute("allure.label.subSuite:BoundaryValues")]
     public partial class BoundaryValuesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "allure.label.epic:GUI",
+                "allure.label.suite:GUI",
+                "allure.label.subSuite:BoundaryValues"};
         
 #line 1 "BoundaryValues.feature"
 #line hidden
@@ -74,17 +80,33 @@ namespace CoreProject.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CreateProjectWithIncorrectCode (���� ������ ����������� ���������� + ����������� " +
-            "���������)")]
+        [NUnit.Framework.DescriptionAttribute("CreateProjectWithIncorrectCode")]
+        [NUnit.Framework.CategoryAttribute("allure.label.story:BoundaryValues")]
+        [NUnit.Framework.CategoryAttribute("allure.label.severity:critical")]
+        [NUnit.Framework.CategoryAttribute("allure.label.owner:JohnDoe")]
+        [NUnit.Framework.CategoryAttribute("link:https://dev.example.com/")]
+        [NUnit.Framework.CategoryAttribute("issue:AUTH-123")]
+        [NUnit.Framework.CategoryAttribute("tms:TMS-456")]
+        [NUnit.Framework.CategoryAttribute("allure.label.package:org.example")]
+        [NUnit.Framework.CategoryAttribute("allure.label.testClass:TestMyWebsite")]
+        [NUnit.Framework.CategoryAttribute("allure.label.testMethod:TestLabels()")]
         [NUnit.Framework.CategoryAttribute("GUI")]
         public void CreateProjectWithIncorrectCode()
         {
             string[] tagsOfScenario = new string[] {
+                    "allure.label.story:BoundaryValues",
+                    "allure.label.severity:critical",
+                    "allure.label.owner:JohnDoe",
+                    "link:https://dev.example.com/",
+                    "issue:AUTH-123",
+                    "tms:TMS-456",
+                    "allure.label.package:org.example",
+                    "allure.label.testClass:TestMyWebsite",
+                    "allure.label.testMethod:TestLabels()",
                     "GUI"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateProjectWithIncorrectCode (���� ������ ����������� ���������� + ����������� " +
-                    "���������)", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 4
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateProjectWithIncorrectCode", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 16
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,16 +116,16 @@ namespace CoreProject.Features
             else
             {
                 this.ScenarioStart();
-#line 5
+#line 17
  testRunner.Given("open the ProjectsPage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 6
+#line 18
  testRunner.When("user clicks Create new project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 7
+#line 19
  testRunner.And("creates a \"Incorrect\" project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 8
+#line 20
  testRunner.Then("Project is not created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -111,15 +133,33 @@ namespace CoreProject.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CreateProject (�������� ���� ��� ����� �� ��������� ��������)")]
+        [NUnit.Framework.DescriptionAttribute("CreateProject")]
+        [NUnit.Framework.CategoryAttribute("allure.label.story:BoundaryValues")]
+        [NUnit.Framework.CategoryAttribute("allure.label.severity:critical")]
+        [NUnit.Framework.CategoryAttribute("allure.label.owner:JohnDoe")]
+        [NUnit.Framework.CategoryAttribute("link:https://dev.example.com/")]
+        [NUnit.Framework.CategoryAttribute("issue:AUTH-1234")]
+        [NUnit.Framework.CategoryAttribute("tms:TMS-457")]
+        [NUnit.Framework.CategoryAttribute("allure.label.package:org.example")]
+        [NUnit.Framework.CategoryAttribute("allure.label.testClass:TestMyWebsite")]
+        [NUnit.Framework.CategoryAttribute("allure.label.testMethod:TestLabels()")]
         [NUnit.Framework.CategoryAttribute("GUI")]
         public void CreateProject()
         {
             string[] tagsOfScenario = new string[] {
+                    "allure.label.story:BoundaryValues",
+                    "allure.label.severity:critical",
+                    "allure.label.owner:JohnDoe",
+                    "link:https://dev.example.com/",
+                    "issue:AUTH-1234",
+                    "tms:TMS-457",
+                    "allure.label.package:org.example",
+                    "allure.label.testClass:TestMyWebsite",
+                    "allure.label.testMethod:TestLabels()",
                     "GUI"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateProject (�������� ���� ��� ����� �� ��������� ��������)", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 11
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CreateProject", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 32
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -129,16 +169,16 @@ namespace CoreProject.Features
             else
             {
                 this.ScenarioStart();
-#line 12
+#line 33
  testRunner.Given("open the ProjectsPage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 13
+#line 34
  testRunner.When("user clicks Create new project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 35
  testRunner.And("creates a \"Correct\" project", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 36
  testRunner.Then("enter a new Project repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

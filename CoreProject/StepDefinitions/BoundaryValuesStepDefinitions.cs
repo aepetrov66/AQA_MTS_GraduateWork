@@ -1,5 +1,7 @@
+using Allure.Net.Commons;
 using CoreProject.Core;
 using CoreProject.Helpers;
+using CoreProject.Helpers.Configuration;
 using CoreProject.Models.Enums;
 using CoreProject.Pages;
 using CoreProject.StepDefinitions.Navigation;
@@ -39,31 +41,40 @@ namespace CoreProject.StepDefinitions
         [When(@"creates a ""([^""]*)"" project")]
         public void WhenCreatesAProject(string dataTypeString)
         {
-            switch (dataTypeString.ToLower())
+            AllureApi.Step($"Создание тестового проекта с {dataTypeString} ТД", () =>
             {
-                case "correct":
-                    Logger.Info("Позитивный тестовый сценарий");
-                    _repositoryPage = _actionSteps.CreateNewProject<ProjectRepositoryPage>(_projectsPage, TestDataType.Correct);
-                    break;
-                case "incorrect":
-                    Logger.Info("Негативный тестовый сценарий");
-                    _projectsPage = _actionSteps.CreateNewProject<ProjectsPage>(_projectsPage, TestDataType.Incorrect);
-                    break;
-            }
+                switch (dataTypeString.ToLower())
+                {
+                    case "correct":
+                        Logger.Info("Позитивный тестовый сценарий");
+                        _repositoryPage = _actionSteps.CreateNewProject<ProjectRepositoryPage>(_projectsPage, TestDataType.Correct);
+                        break;
+                    case "incorrect":
+                        Logger.Info("Негативный тестовый сценарий");
+                        _projectsPage = _actionSteps.CreateNewProject<ProjectsPage>(_projectsPage, TestDataType.Incorrect);
+                        break;
+                }
+            });
         }
 
         [Then(@"enter a new Project repository")]
         public void WhenEnterToTheProjectNameField1()
         {
-            Assert.That(_repositoryPage.IsPageOpened() && _repositoryPage.GetProjectCode().Equals(TestData.CorrectProject.Code));
-            _testDataSteps.DeleteTestProject();
+            AllureApi.Step($"Проверка, имя проекта должно быть = {TestData.CorrectProject.Code} ", () =>
+            {
+                Assert.That(_repositoryPage.IsPageOpened() && _repositoryPage.GetProjectCode().Equals(TestData.CorrectProject.Code));
+                _testDataSteps.DeleteTestProject();
+            });
         }
 
         [Then(@"Project is not created")]
         public void ThenAssert()
         {
-            Assert.That(_projectsPage.GetErrorText().Equals("Data is invalid."));
-            Logger.Info($"Ошибка при создании проекта: {_projectsPage.GetErrorText()}");
+            AllureApi.Step($"Проверка, что проект не создан", () =>
+            {
+                Assert.That(_projectsPage.GetErrorText().Equals("Data is invalid."));
+                Logger.Info($"Ошибка при создании проекта: {_projectsPage.GetErrorText()}");
+            });
         }
     }
 }

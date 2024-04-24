@@ -21,12 +21,18 @@ namespace CoreProject.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("API")]
+    [NUnit.Framework.CategoryAttribute("allure.label.epic:API")]
+    [NUnit.Framework.CategoryAttribute("allure.label.suite:API")]
+    [NUnit.Framework.CategoryAttribute("allure.label.subSuite:APItests")]
     public partial class APIFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "allure.label.epic:API",
+                "allure.label.suite:API",
+                "allure.label.subSuite:APItests"};
         
 #line 1 "API.feature"
 #line hidden
@@ -75,39 +81,15 @@ namespace CoreProject.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get all testcases")]
+        [NUnit.Framework.CategoryAttribute("allure.label.story:API")]
         [NUnit.Framework.CategoryAttribute("API")]
         public void GetAllTestcases()
         {
             string[] tagsOfScenario = new string[] {
+                    "allure.label.story:API",
                     "API"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get all testcases", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 4
- this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 5
- testRunner.Given("getProjects request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get a project")]
-        [NUnit.Framework.CategoryAttribute("API")]
-        public void GetAProject()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "API"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get a project", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -119,6 +101,34 @@ namespace CoreProject.Features
             {
                 this.ScenarioStart();
 #line 9
+ testRunner.Given("getProjects request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Get a project")]
+        [NUnit.Framework.CategoryAttribute("allure.label.story:API")]
+        [NUnit.Framework.CategoryAttribute("API")]
+        public void GetAProject()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "allure.label.story:API",
+                    "API"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get a project", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 13
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 14
  testRunner.Given("getProject request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
@@ -127,14 +137,16 @@ namespace CoreProject.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get Unauthorized error")]
+        [NUnit.Framework.CategoryAttribute("allure.label.story:API")]
         [NUnit.Framework.CategoryAttribute("API")]
         public void GetUnauthorizedError()
         {
             string[] tagsOfScenario = new string[] {
+                    "allure.label.story:API",
                     "API"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Unauthorized error", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 12
+#line 18
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -144,7 +156,7 @@ namespace CoreProject.Features
             else
             {
                 this.ScenarioStart();
-#line 13
+#line 19
  testRunner.Given("unauthorized request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
@@ -153,14 +165,16 @@ namespace CoreProject.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Not found project")]
+        [NUnit.Framework.CategoryAttribute("allure.label.story:API")]
         [NUnit.Framework.CategoryAttribute("API")]
         public void NotFoundProject()
         {
             string[] tagsOfScenario = new string[] {
+                    "allure.label.story:API",
                     "API"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Not found project", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 16
+#line 23
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -170,7 +184,7 @@ namespace CoreProject.Features
             else
             {
                 this.ScenarioStart();
-#line 17
+#line 24
  testRunner.Given("getUnexistingProject request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
@@ -179,65 +193,15 @@ namespace CoreProject.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Not found")]
+        [NUnit.Framework.CategoryAttribute("allure.label.story:API")]
         [NUnit.Framework.CategoryAttribute("API")]
         public void NotFound()
         {
             string[] tagsOfScenario = new string[] {
+                    "allure.label.story:API",
                     "API"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Not found", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 20
- this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 21
- testRunner.Given("getProject bad request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Invalid data")]
-        [NUnit.Framework.CategoryAttribute("API")]
-        public void InvalidData()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "API"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invalid data", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 24
- this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 25
- testRunner.Given("postProject with invalid data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Post project")]
-        [NUnit.Framework.CategoryAttribute("API")]
-        public void PostProject()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "API"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post project", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 28
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -249,6 +213,62 @@ namespace CoreProject.Features
             {
                 this.ScenarioStart();
 #line 29
+ testRunner.Given("getProject bad request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Invalid data")]
+        [NUnit.Framework.CategoryAttribute("allure.label.story:API")]
+        [NUnit.Framework.CategoryAttribute("API")]
+        public void InvalidData()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "allure.label.story:API",
+                    "API"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invalid data", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 33
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 34
+ testRunner.Given("postProject with invalid data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Post project")]
+        [NUnit.Framework.CategoryAttribute("allure.label.story:API")]
+        [NUnit.Framework.CategoryAttribute("API")]
+        public void PostProject()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "allure.label.story:API",
+                    "API"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Post project", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 38
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 39
  testRunner.Given("postProjectRequest to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }

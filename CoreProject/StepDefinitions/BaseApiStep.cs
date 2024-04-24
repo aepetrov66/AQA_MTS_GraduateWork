@@ -19,17 +19,4 @@ public class BaseApiStep
         Logger = LogManager.GetCurrentClassLogger();
         ProjectService = projectService;
     }
-
-    /*[BeforeScenario("API")]
-    public void BeforeGUIScenario()
-    {
-        var restClient = new RestClientExtended();
-        ProjectService = new ProjectService(restClient);
-    }
-
-    [AfterScenario("API")]
-    public void AfterScenario()
-    {
-        ProjectService?.Dispose();
-    }*/
 }
