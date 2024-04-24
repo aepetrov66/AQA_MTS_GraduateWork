@@ -129,7 +129,7 @@ namespace CoreProject.StepDefinitions
         {
             AllureApi.Step($"Это как бы ошибка, но как бы и не ошибка, должны тут падать", () =>
             {
-                Assert.That(true);
+                Assert.That(false);
             });
         }
 
