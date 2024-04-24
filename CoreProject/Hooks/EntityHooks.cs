@@ -24,6 +24,7 @@ public class EntityHooks
     [BeforeScenario("ENTITY")]
     public void BeforeGUIScenario()
     {
+        AllureApi.Step($"Открываем {Configurator.AppSettings.URL}");
         _browser.Driver.Navigate().GoToUrl(Configurator.AppSettings.URL);
 
         _testDataSteps.CreateTestProject();
@@ -34,6 +35,8 @@ public class EntityHooks
     [AfterScenario("ENTITY")]
     public void AfterScenario()
     {
+        AllureApi.Step($"Удаление Тестовых данных");
+        _testDataSteps.DeleteTestProject();
         if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
         {
             Screenshot screenshot = ((ITakesScreenshot)_browser.Driver).GetScreenshot();
@@ -43,7 +46,7 @@ public class EntityHooks
             AllureApi.AddAttachment("data.txt", "text/plain", Encoding.UTF8.GetBytes("This os the file content."));
         }
 
-        _testDataSteps.DeleteTestProject();
+        
         _browser.Driver.Quit();
     }
 }

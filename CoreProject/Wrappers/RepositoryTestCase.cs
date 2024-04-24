@@ -1,7 +1,4 @@
-﻿using AngleSharp.Dom;
-using CoreProject.Helpers;
-using CoreProject.Wrappers.SimpleElements;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using System.Text.RegularExpressions;
 
 namespace CoreProject.Wrappers;
@@ -43,7 +40,7 @@ public class RepositoryTestCase
     public List<int> GetTestCasesIds()
     {
         var intList = new List<int>();
-        foreach(var tc in _testCases)
+        foreach (var tc in _testCases)
         {
             intList.Add(GetTestCaseId(tc));
         }
@@ -52,9 +49,8 @@ public class RepositoryTestCase
 
     public int GetTheLatestTestCaseId()
     {
-        return GetTestCaseId(_testCases[_testCases.Count-1]);
+        return GetTestCaseId(_testCases[_testCases.Count - 1]);
     }
-
 
     public string GetTitle(int id)
     {

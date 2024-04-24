@@ -27,6 +27,7 @@ public class Hooks
     [BeforeScenario("GUI")]
     public void BeforeGUIScenario()
     {
+        AllureApi.Step($"Открываем {Configurator.AppSettings.URL}");
         _browser.Driver.Navigate().GoToUrl(Configurator.AppSettings.URL);
     }
 

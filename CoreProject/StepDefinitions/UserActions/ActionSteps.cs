@@ -1,4 +1,5 @@
-﻿using CoreProject.Clients;
+﻿using Allure.Net.Commons;
+using CoreProject.Clients;
 using CoreProject.Core;
 using CoreProject.Helpers;
 using CoreProject.Helpers.Configuration;
@@ -20,6 +21,7 @@ public class ActionSteps : BaseGuiStep
 
     public T CreateNewProject<T>(ProjectsPage projectsPage, TestDataType testDataType) where T : BasePage
     {
+        AllureApi.Step($"Создать тестовый проект, генерик");
         Project project;
         switch (testDataType)
         {
@@ -43,12 +45,14 @@ public class ActionSteps : BaseGuiStep
 
     public ProjectRepositoryPage CreateNewTestCase(CreateTestCasePage createNewTestCasePage, TestCase testCase)
     {
+        AllureApi.Step($"Заполнить основные поля тестового случая");
         createNewTestCasePage.FillTheNewTestCaseBasic(testCase);
         return createNewTestCasePage.SaveTestCase();
     }
 
     public ProjectRepositoryPage DeleteTestCase(ProjectRepositoryPage projectRepositoryPage)
     {
+        AllureApi.Step($"Удалить тесткейс");
         projectRepositoryPage.ChooseTestcase(1);
         projectRepositoryPage.DeleteClick();
         projectRepositoryPage.Confirm();

@@ -1,3 +1,4 @@
+using Allure.Net.Commons;
 using CoreProject.Core;
 using CoreProject.Helpers;
 using CoreProject.Models;
@@ -28,19 +29,26 @@ namespace CoreProject.StepDefinitions
         [Given(@"open the Project")]
         public void GivenOpenTheProject()
         {
+            AllureApi.Step($"Идем в репозиторий тестового проекта");
             _projectRepositoryPage = _navigationSteps.NavigateToProjectRepositoryPage(TestData.CorrectProject.Title);
         }
 
         [When(@"user clicks CreateTestCaseButton")]
         public void WhenUserClicksCreateTestCaseButton()
         {
-            _newTestCasePage = _projectRepositoryPage.CreateCaseButtonClick();
+            AllureApi.Step($"Создать новый ТК Клик", () =>
+            {
+                _newTestCasePage = _projectRepositoryPage.CreateCaseButtonClick();
+            });
         }
 
         [When(@"user fills the TestCaseBasic")]
         public void WhenUserFillsTheTestCaseBasic()
         {
-            _projectRepositoryPage = _actionSteps.CreateNewTestCase(_newTestCasePage, TestData.TestCase);
+            AllureApi.Step($"Заполнить поля нового ТК", () =>
+            { 
+                _projectRepositoryPage = _actionSteps.CreateNewTestCase(_newTestCasePage, TestData.TestCase);
+            });
         }
 
         [When(@"navigate Backward")]
@@ -52,11 +60,14 @@ namespace CoreProject.StepDefinitions
         [Then(@"assert the PopUp")]
         public void ThenAssertThePopUp()
         {
-            IAlert alert = Driver.SwitchTo().Alert();
-            Assert.That(alert.Text, Is.EqualTo("Are you sure you want to leave?"));
-            Logger.Info($"Текст всплывающего сообщения: {alert.Text}");
-            alert.Accept();
-            _projectRepositoryPage.IsPageOpened();
+            AllureApi.Step($"Проверка всплывающего сообщения", () =>
+            {
+                IAlert alert = Driver.SwitchTo().Alert();
+                Assert.That(alert.Text, Is.EqualTo("Are you sure you want to leave?"));
+                Logger.Info($"Текст всплывающего сообщения: {alert.Text}");
+                alert.Accept();
+                _projectRepositoryPage.IsPageOpened();
+            });
         }
 
         [Then(@"assert the ProjectRepository page is open")]
@@ -74,7 +85,11 @@ namespace CoreProject.StepDefinitions
         [When(@"user delete TestCase")]
         public void WhenUserDeleteTestCase()
         {
-            _projectRepositoryPage = _actionSteps.DeleteTestCase(_projectRepositoryPage);
+            AllureApi.Step($"Удалить ТК", () =>
+            {
+                _projectRepositoryPage = _actionSteps.DeleteTestCase(_projectRepositoryPage);
+            });
+
         }
 
         [Then(@"there is no such testCase")]
@@ -94,19 +109,28 @@ namespace CoreProject.StepDefinitions
         [When(@"user uploads file")]
         public void WhenUserUploadsFile()
         {
-            _newTestCasePage.AddAttachment("Dobby.jpg");
+            AllureApi.Step($"Добавим файл", () =>
+            {
+                _newTestCasePage.AddAttachment("Dobby.jpg");
+            });
         }
 
         [Then(@"assert the file")]
         public void ThenAsserTheFile()
         {
-            Assert.That(_newTestCasePage.ImgExists());
+            AllureApi.Step($"Проверка наличия аттача", () =>
+            {
+                Assert.That(_newTestCasePage.ImgExists());
+            });
         }
 
         [Then(@"fail")]
         public void ThenFail()
         {
-            Assert.That(false);
+            AllureApi.Step($"Это как бы ошибка, но как бы и не ошибка, должны тут падать", () =>
+            {
+                Assert.That(false);
+            });
         }
 
     }

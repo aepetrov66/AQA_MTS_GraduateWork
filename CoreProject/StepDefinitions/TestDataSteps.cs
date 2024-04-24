@@ -1,4 +1,5 @@
-﻿using CoreProject.Clients;
+﻿using Allure.Net.Commons;
+using CoreProject.Clients;
 using CoreProject.Helpers;
 using CoreProject.Services;
 using NLog;
@@ -12,6 +13,8 @@ public class TestDataSteps
 
     public void DeleteTestProject()
     {
+        AllureApi.Step($"Удалить тестовый проект");
+
         var restClient = new RestClientExtended();
         var projectService = new ProjectService(restClient);
         var response = projectService.DeleteProject(TestData.CorrectProject.Code.ToUpper());
@@ -21,6 +24,7 @@ public class TestDataSteps
 
     public void CreateTestProject()
     {
+        AllureApi.Step($"Создать тестовый проект");
         var restClient = new RestClientExtended();
         var projectService = new ProjectService(restClient);
 
@@ -36,6 +40,7 @@ public class TestDataSteps
 
     public void DeleteTestCase()
     {
+        AllureApi.Step($"Удалить тестовый случай");
         var restClient = new RestClientExtended();
         var testCaseService = new TestCaseService(restClient);
         var response = testCaseService.DeleteProject(TestData.CorrectProject.Code.ToUpper(), 1);
@@ -45,6 +50,7 @@ public class TestDataSteps
 
     public void CreateTestCase()
     {
+        AllureApi.Step($"Создать тестовый случай");
         var restClient = new RestClientExtended();
         var testCaseService = new TestCaseService(restClient);
 

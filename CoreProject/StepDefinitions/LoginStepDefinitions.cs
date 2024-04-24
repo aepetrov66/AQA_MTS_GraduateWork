@@ -1,3 +1,4 @@
+using Allure.Net.Commons;
 using CoreProject.Core;
 using CoreProject.Models.Enums;
 using CoreProject.Pages;
@@ -29,17 +30,20 @@ namespace CoreProject.StepDefinitions
         [When(@"""([^""]*)"" sign in")]
         public void WhenSignIn(string dataTypeString)
         {
-            switch (dataTypeString.ToLower())
+            AllureApi.Step($"Выполняем вход с {dataTypeString} userData", () =>
             {
-                case "correct":
-                    Logger.Info("Позитивный тестовый сценарий");
-                    _projectsPage = _navigationSteps.SignIn<ProjectsPage>(_loginPage, TestDataType.Correct);
-                    break;
-                case "incorrect":
-                    Logger.Info("Негативный тестовый сценарий");
-                    _loginPage = _navigationSteps.SignIn<LoginPage>(_loginPage, TestDataType.Incorrect);
-                    break;
-            }
+                switch (dataTypeString.ToLower())
+                {
+                    case "correct":
+                        Logger.Info("Позитивный тестовый сценарий");
+                        _projectsPage = _navigationSteps.SignIn<ProjectsPage>(_loginPage, TestDataType.Correct);
+                        break;
+                    case "incorrect":
+                        Logger.Info("Негативный тестовый сценарий");
+                        _loginPage = _navigationSteps.SignIn<LoginPage>(_loginPage, TestDataType.Incorrect);
+                        break;
+                }
+            });
         }
 
         [Then(@"user is successfully logged in")]
@@ -51,8 +55,11 @@ namespace CoreProject.StepDefinitions
         [Then(@"assert error message")]
         public void ThenAssertErrorMessage()
         {
-            Assert.That(_loginPage.GetErrorLabelText().Contains("These credentials do not match our records."));
-            Logger.Info($"Ошибка при входе: {_loginPage.GetErrorLabelText()}");
+            AllureApi.Step($"Проверка сообщения об ошибке", () =>
+            {
+                Assert.That(_loginPage.GetErrorLabelText().Contains("These credentials do not match our records."));
+                Logger.Info($"Ошибка при входе: {_loginPage.GetErrorLabelText()}");
+            });
         }
 
     }

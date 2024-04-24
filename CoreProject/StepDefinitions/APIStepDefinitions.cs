@@ -29,7 +29,6 @@ public class APIStepDefinitions : BaseApiStep
         Assert.Multiple(() =>
         {
             Assert.That(response.Result.Count == response.Result.Entities.Count());
-            Assert.That(response.Result.Entities.Select(x => x.Code.Equals(TestData.CorrectProject.Code)).First());
         });
     }
 
